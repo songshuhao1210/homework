@@ -12,7 +12,8 @@ eqn = x^3-I1*x^2+I2*x-I3==0;
 lambda = double(solve(eqn,x));
 
 [V,D]=eig(S);
-
+V
+D
 
 
 
