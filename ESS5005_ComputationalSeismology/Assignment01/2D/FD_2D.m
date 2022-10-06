@@ -1,5 +1,5 @@
-function [P_after] = FD_2D(XX,ZZ,dx,dt,cc,source_paras,s_t,nt,x_s_index,z_s_index,P_bef,P_now)
-%UNTITLED2 此处提供此函数的摘要
+function [P_after,flag_inf] = FD_2D(XX,ZZ,dx,dt,cc,source_paras,s_t,nt,x_s_index,z_s_index,P_bef,P_now,flag_bound,flag_inf)
+%FD_2D finite.m: differntial function for 2D problem
 %   此处提供详细说明
     
     % contribution of x direction
@@ -15,12 +15,18 @@ function [P_after] = FD_2D(XX,ZZ,dx,dt,cc,source_paras,s_t,nt,x_s_index,z_s_inde
     % renew time,space contribution without source
     P_after = 2*P_now-P_bef + d2P;
 
-    % free surface boundary
-    P_after(1,:) = 0;
+
+    % boundary set
+    P_after = boundary(dx,dt,cc,P_bef,P_now,P_after,flag_bound);
 
     % add source influence
     for i = 1:source_paras{1}
         P_after(z_s_index(i),x_s_index(i)) = P_after(z_s_index(i),x_s_index(i)) + double(s_t{i}(nt))*dt^(2);
+    end
+
+    % renew flag_inf
+    if flag_inf < max(max(abs(P_after)))
+        flag_inf = max(max(abs(P_after)));
     end
 
 

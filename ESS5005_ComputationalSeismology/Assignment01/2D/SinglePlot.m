@@ -1,9 +1,11 @@
-function [im] = SinglePlot(XX,ZZ,tt,value_c,type_c,source_prars,P_now,nt,flag_min,flag_max,im,flag_im,fig)
+function [im] = SinglePlot(XX,ZZ,tt,cc,value_c,type_c,source_prars,P_now,nt,flag_min,flag_max,im,flag_im,fig)
 %UNTITLED4 此处提供此函数的摘要
 %   此处提供详细说明
     
     ratio = int32(length(XX)/length(ZZ));
     imagesc(XX',ZZ',P_now);
+    hold on
+    contour(XX,ZZ,cc,'black','ShowText','on')
     colorbar;
     set(gca,'CLim',[flag_min,flag_max])
     set(gca,'xaxislocation','top')

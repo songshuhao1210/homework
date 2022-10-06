@@ -4,7 +4,11 @@ function [cc] = Velocity(value_v,type_v,XX,ZZ)
     
     cc = zeros(length(ZZ),length(XX));
     if type_v == 1
-        cc = value_v;
+        for ix =1:length(XX)
+            for iz = 1:length(ZZ)
+                cc(iz,ix) = value_v;
+            end
+        end
     elseif type_v == 2
         for i = 2:size(value_v,2)
             z_start = find(ZZ == value_v(2,i-1));
