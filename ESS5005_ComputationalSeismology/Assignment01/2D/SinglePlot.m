@@ -17,7 +17,7 @@ function [im] = SinglePlot(XX,ZZ,tt,cc,value_c,type_c,source_prars,P_now,nt,flag
             hold on
             line([XX(1),XX(end)],[value_c(2,i),value_c(2,i)],'linestyle','-')
             for j = 1:size(source_prars{5},1)
-                plot(source_prars{5}(j,1),source_prars{5}(j,2),'r*')
+                plot(source_prars{4}(j,1),source_prars{4}(j,2),'r*')
             end
         end
         hold off

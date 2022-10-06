@@ -1,7 +1,8 @@
-function [] = GifPlot(tt,dt,speed,im)
+function [] = GifPlot(dt,speed,im,path)
 % GifPlot : plot .git for visualization
     
-
+    filepath=pwd;
+    cd(path)
     filename = 'Wavefield.gif'; % Specify the output file name
     for idx = 1:length(im)
         [A,map] = rgb2ind(im{idx},256);
@@ -11,6 +12,5 @@ function [] = GifPlot(tt,dt,speed,im)
             imwrite(A,map,filename,'gif','WriteMode','append','DelayTime',speed*dt);
         end
     end
-
-    
+    cd(filepath) 
 end

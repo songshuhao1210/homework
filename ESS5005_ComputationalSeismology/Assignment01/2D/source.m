@@ -1,4 +1,4 @@
-function [s] = source(time_s0,amp_s,time,type_s,number,extra_inf)
+function [s] = source(time_s0,amp_s,time,type_s,number,extra_inf,path)
     % SOURCE.m generate the source time function by given the source type
     % , time, location and amlitude paras.
     % 
@@ -25,6 +25,8 @@ function [s] = source(time_s0,amp_s,time,type_s,number,extra_inf)
     end
 
     %% source time function
+    path_now = pwd;
+    cd(path)
     s = amp_s(1).*func;
     plot(time,s,'b');
     xlabel('time /s')
@@ -33,4 +35,5 @@ function [s] = source(time_s0,amp_s,time,type_s,number,extra_inf)
     fileformat = ['source_number',num2str(number),'.png'];
     saveas(gcf,fileformat)
     close all
+    cd(path_now)
 end
