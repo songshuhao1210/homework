@@ -1,0 +1,15 @@
+This is a 2D FDM Acoustic wave simulation.
+
+functions:
+change velocity models(homogeneous, layer, heterogeneous)
+change sources
+change boundaries(free,absorbing)
+
+simulation record:
+
+homogeneous: speed = 5; t_end = 12; fmin,fmax = -0.05,0.05
+layer : speed = 10; t_end = 8; fmin,fmax = -0.05,0.05
+heterogeneous: speed =  10; t_end = 4; f_min,f_max = -0.01,0.01
+
+official:(layer model, 2 sources)
+dx = 5, speed = 50

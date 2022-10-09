@@ -1,4 +1,4 @@
-function [] = GifPlot(dt,speed,im,path)
+function [] = Plot_Gif(dt,speed,im,path)
 % GifPlot : plot .git for visualization
     
     filepath=pwd;

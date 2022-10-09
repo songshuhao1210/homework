@@ -1,4 +1,4 @@
-function [s] = source(time_s0,amp_s,time,type_s,number,extra_inf,path)
+function [s] = source(time,number,path,source_paras)
     % SOURCE.m generate the source time function by given the source type
     % , time, location and amlitude paras.
     % 
@@ -6,6 +6,11 @@ function [s] = source(time_s0,amp_s,time,type_s,number,extra_inf,path)
     % amp_s: the amplitude of the source
     % type_s: 1--delta function; 2--unistep; 3--single frequency
     % number: the number of this source
+    time_s0 = source_paras{2}(number,:);
+    amp_s = source_paras{3}(number);
+    loc_s = source_paras{4}(number,:);
+    type_s = source_paras{5}(number);
+    extra_inf = source_paras{6}(number);
 
     %% find closest t
     loc_t(1) = find(abs(time_s0(1)-time) == min(abs(time_s0(1)-time)) );
@@ -30,8 +35,8 @@ function [s] = source(time_s0,amp_s,time,type_s,number,extra_inf,path)
     s = amp_s(1).*func;
     plot(time,s,'b');
     xlabel('time /s')
-    ylabel('amplitude');
-    title('source time funtion')
+    ylabel('amplitude /km');
+    title(['source time funtion at (',num2str(loc_s(1)),'km, ',num2str(loc_s(2)) ,'km)'])
     fileformat = ['source_number',num2str(number),'.png'];
     saveas(gcf,fileformat)
     close all

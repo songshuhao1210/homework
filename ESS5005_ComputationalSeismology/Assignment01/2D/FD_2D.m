@@ -15,14 +15,14 @@ function [P_after,flag_inf] = FD_2D(XX,ZZ,dx,dt,cc,source_paras,s_t,nt,x_s_index
     % renew time,space contribution without source
     P_after = 2*P_now-P_bef + d2P;
 
-
-    % boundary set
-    P_after = boundary(dx,dt,cc,P_bef,P_now,P_after,flag_bound);
-
     % add source influence
     for i = 1:source_paras{1}
         P_after(z_s_index(i),x_s_index(i)) = P_after(z_s_index(i),x_s_index(i)) + double(s_t{i}(nt))*dt^(2);
     end
+
+    % boundary set
+    P_after = boundary(dx,dt,cc,P_bef,P_now,P_after,flag_bound);
+
 
     % renew flag_inf
     if flag_inf < max(max(abs(P_after)))
