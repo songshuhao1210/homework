@@ -1,5 +1,5 @@
 % field
-a = zeros(500,400);
+a = zeros(1000,800);
 
 % file i/o
 fid = fopen('figures/slices.out','r');
@@ -9,14 +9,16 @@ close all;
 
 for i=1:40
    i
-   a(:,:) = fread(fid,[500,400],'float32');
+   a(:,:) = fread(fid,[1000,800],'float32');
    pcolor(a'); shading flat;
-   colorbar('horiz');
    axis ij;axis equal;
-   xlim([0 500]);ylim([0 400]);
+   colorbar('horiz');
+   
+   xlim([0 1000]);ylim([0 800]);
    
    if (i == 1)
      title('bathymetry');
+     
      colormap(bone);
      %axis ij;axis equal;
      %xlim([0 500]);ylim([0 400]);
@@ -25,6 +27,7 @@ for i=1:40
      pause(2);
    else
      title(['i = ',num2str(i)]);
+     
      % color map
      myColorMap = jet;     
      myColorMap(33, :) = [1 1 1];

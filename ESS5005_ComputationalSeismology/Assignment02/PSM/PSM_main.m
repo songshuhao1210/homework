@@ -8,7 +8,7 @@ close all; clc; clear;
 
 % changeable parameters
 eps = 0.5;          % time-space relationship control number
-ppw = 5;            % numbers of points per wavelength
+ppw = 800;            % numbers of points per wavelength
 flag_plot_st = 1;   % 1--save source time function
 
 % fixed parameters
@@ -47,7 +47,7 @@ end
 %% plot the source time function
 path = fig_path;
 if flag_plot_st == 1
-    t_s = 0:0.01:2/f;
+    t_s = 0:1:2/f;
     plot(t_s,source(f,t_s));
     xlabel('Time /s')
     ylabel('Amplitude /km');
@@ -123,14 +123,14 @@ filename='2D PSM.gif';
 %draw 
 for pa=1:nt/dt2
  
-    imagesc(gif_2dPSM(:,:,pa));
+    pcolor(gif_2dPSM(:,:,pa));
+    axis equal;axis equal;
     colorbar('horiz');
-    colormap('bone');
-    axis equal;
-    axis tight;%使坐标轴的最大值最小值与数值一致
     shading interp;
-    colormap(winter);
-    axis equal
+    %axis tight;%使坐标轴的最大值最小值与数值一致
+    %shading interp;
+    caxis([-100 100]);
+
     axis([0,1000,0,800])
     set(gca,'Ydir','reverse');
     xlabel('x');ylabel('y');
@@ -139,7 +139,7 @@ for pa=1:nt/dt2
     f=getframe(gcf);
     imind=frame2im(f);
     [imind,cm]=rgb2ind(imind,256);
-    colormap(winter);
+    colormap(jet); 
     if pa==1
          imwrite(imind,cm,filename,'gif', 'Loopcount',inf,'DelayTime',1e-1);
     else

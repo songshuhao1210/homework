@@ -122,7 +122,7 @@ double getmax(float *x, int n){
  */
 float line[1000];
 int outfd	= -1;
-int	istep	= 2;
+int	istep	= 1;
 
 void output_slice(float *x,int nx,int ny,double t){
   int ix,iy,i;
