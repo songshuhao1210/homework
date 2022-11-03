@@ -1,4 +1,4 @@
-function [flag_fig_num] = plot_main(nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_fig_num,title_x,path,filename)
+function [flag_fig_num] = plot_main(flag_ratio,nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_fig_num,title_x,path,filename)
     %% plot gif
     figure(flag_fig_num)
     x = 1 : nx;
@@ -11,16 +11,22 @@ function [flag_fig_num] = plot_main(nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_fig_num,tit
         shading interp;
         %axis tight;%使坐标轴的最大值最小值与数值一致
         %shading interp;
-        caxis([-10 10]);
+        
+        
+        caxis([-10*flag_ratio 10*flag_ratio]);
+
+
     
         axis([0,nx,0,ny])
         set(gca,'Ydir','reverse');
         xlabel('x');ylabel('y');
         title([ [title_x,'   '] ,num2str(pa*dt2*dt,'%4d'),'s'])
         
-        hold on
-        contour(X,Y,H)
-        hold off
+        if max(max(H)) ~= min(min(H))
+            hold on
+            contour(X,Y,H)
+            hold off
+        end
         
         % GIF
         f=getframe(gcf);

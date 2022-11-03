@@ -253,7 +253,7 @@ int main(int ac, char **av){
         }
 
         // FD scheme
-        if(ord == 2 || ix == 1 || ix == nx-2 || iy ==1 || iy == ny-2){
+        if(ord == 2 ){
           // 2nd-order
           P1(ix,iy) = 2.0*(1.0 + -2.0*V(ix,iy))*P2(ix,iy) - P1(ix,iy)
                       + 1.0*V(ix,iy)*(P2(ix+1,iy) + P2(ix-1,iy) + P2(ix,iy+1) + P2(ix,iy-1));

@@ -1,4 +1,4 @@
-function [flag_fig_num] = PSM(nx,ny,nt,dx,dt,c,H,f,ixs,iys,title,dt2,flag_fig_num,filename,path)
+function [flag_fig_num] = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title,dt2,flag_fig_num,filename,path)
 
 
     % PSM
@@ -45,7 +45,7 @@ function [flag_fig_num] = PSM(nx,ny,nt,dx,dt,c,H,f,ixs,iys,title,dt2,flag_fig_nu
         p_new=2*p-p_old+c.^2.*dt^2.*(d2p_x+d2p_y);
     
         % source contribution
-        p_new(ny-iys,ixs)=p_new(ny-iys,ixs) + source(f,i*dt)*dt^2;
+        p_new(ny-iys,ixs)=p_new(ny-iys,ixs) + source_time(f,i*dt,flag_source_type)*dt^2;
 
         % boundary condition
         p_new(1,:)=0;
@@ -67,6 +67,6 @@ function [flag_fig_num] = PSM(nx,ny,nt,dx,dt,c,H,f,ixs,iys,title,dt2,flag_fig_nu
     toc
     disp(['end ',title])
     %% plot
-    flag_fig_num = plot_main(nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_fig_num,title,path,filename);
+    flag_fig_num = plot_main(flag_ratio,nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_fig_num,title,path,filename);
     
 end
