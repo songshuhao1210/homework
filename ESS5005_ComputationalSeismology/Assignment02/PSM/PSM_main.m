@@ -8,9 +8,11 @@ close all; clc; clear;
 
 % changeable parameters
 eps = 0.2;          % time-space relationship control number
-ppw = 400;            % numbers of points per wavelength
+ppw = 1000;            % numbers of points per wavelength
 
-flag_plot_st = 0;   % 1--save source time function
+flag_source_location = 2;   % 1--Sumendala earthquake in 2004; 2--center
+flag_source_type = 2;       % 1--Richer; 2--Gaussian
+flag_plot_st = 1;   % 1--save source time function
 dt2 = 50;
 
 % path
@@ -29,19 +31,29 @@ ny = 800;           % total number of y points
 nt = 3000;          % total number of t steps
 
     % source location
-slat = 3.3;
-slon = 95.87;
 
-latref = -40;
-lonref = 35;
-
-[ixs,iys] = xcoord_convert(slat,slon,latref,lonref,dx);
+if flag_source_location == 1
+    slat = 3.3;
+    slon = 95.87;
+    
+    latref = -40;
+    lonref = 35;
+    
+    [ixs,iys] = xcoord_convert(slat,slon,latref,lonref,dx);
+else
+    ixs = nx/2;
+    iys = ny/2;
+end
 
     % velocity model
 flag_fig_num = 1;
-[H,flag_fig_num] = loadHeight(nx,ny,ixs,iys,flag_fig_num,fig_path,flag_plot_st);
-H = -H;
-H(H<0) = 0;
+if flag_source_location == 1
+    [H,flag_fig_num] = loadHeight(nx,ny,ixs,iys,flag_fig_num,fig_path,flag_plot_st);
+    H = -H;
+    H(H<0) = 0;
+else
+    H = 8870;
+end
 g = 9.85;
 c = sqrt(g.*H).*0.001; % km/s
 
@@ -54,14 +66,37 @@ f = 2*pi/ppw/dx;
 path = fig_path;
 if flag_plot_st == 1
     figure(flag_fig_num)
-    t_s = 0:1:4/f;
-    plot(t_s,source(f,t_s));
+    t_s = 0:dt:nt*dt;
+    s0 = source_time(f,t_s,flag_source_type);
+    plot(t_s,s0);
     xlabel('Time /s')
     ylabel('Amplitude /km');
-    axis([0,4/f,-1.5,1.5])
+    %axis([0,dt*nt,-1.5,1.5])
     title('Source time funtion of Ricker wavelet')
     fileformat = [path,'/source_time.png'];
     saveas(gcf,fileformat)
+    flag_fig_num = flag_fig_num + 1;
+
+    figure(flag_fig_num)
+    Fs = 0.01;               % 采样频率
+    T = 1/Fs;             % 采样周期
+    L = length(s0);             % 信号长度   由此知，频率分辨率为 1hz
+    t = (0:L-1)*T;        % 时间相量
+
+    figure(flag_fig_num)
+
+
+    s0 = source_time(f,t,flag_source_type);
+    Y = fft(s0);
+    
+    P2 = abs(Y/L);  % 每个量除以数列长度 L
+    P1 = P2(1:L/2+1);  % 取交流部分
+    P1(2:end-1) = 2*P1(2:end-1); % 交流部分模值乘以2
+    ff = Fs*(0:(L/2))/L;
+    plot(ff,P1)
+    title('Single-Sided Amplitude Spectrum of S(t)')
+    xlabel('f (Hz)')
+    ylabel('|P1(f)|')
     flag_fig_num = flag_fig_num + 1;
 end
 
