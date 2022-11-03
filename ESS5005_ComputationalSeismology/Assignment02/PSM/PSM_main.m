@@ -65,31 +65,31 @@ if flag_plot_st == 1
     flag_fig_num = flag_fig_num + 1;
 end
 
-%% PSM
-filename = 'PSM';
-title = 'PSM';
-path = [fig_path,'PSM/'];
-
-if exist(path) ~= 0
-    rmdir(path,'s')
-end
-mkdir(path)
-
-flag_fig_num = PSM(nx,ny,nt,dx,dt,c,H,f,ixs,iys,title,dt2,flag_fig_num,filename,path);
-
-%% FDM_2nd
-flag_FDM = 2;
-
-filename = 'FDM_2nd';
-title = 'FDM 2nd';
-path = [fig_path,'FDM_2nd/'];
-
-if exist(path) ~= 0
-    rmdir(path,'s')
-end
-mkdir(path)
-
-flag_fig_num = FDM(flag_FDM,nx,ny,nt,dx,dt,c,H,f,ixs,iys,title,dt2,flag_fig_num,filename,path);
+% %% PSM
+% filename = 'PSM';
+% title = 'PSM';
+% path = [fig_path,'PSM/'];
+% 
+% if exist(path) ~= 0
+%     rmdir(path,'s')
+% end
+% mkdir(path)
+% 
+% flag_fig_num = PSM(nx,ny,nt,dx,dt,c,H,f,ixs,iys,title,dt2,flag_fig_num,filename,path);
+% 
+% %% FDM_2nd
+% flag_FDM = 2;
+% 
+% filename = 'FDM_2nd';
+% title = 'FDM 2nd';
+% path = [fig_path,'FDM_2nd/'];
+% 
+% if exist(path) ~= 0
+%     rmdir(path,'s')
+% end
+% mkdir(path)
+% 
+% flag_fig_num = FDM(flag_FDM,nx,ny,nt,dx,dt,c,H,f,ixs,iys,title,dt2,flag_fig_num,filename,path);
 
 %% FDM_4nd
 flag_FDM = 4;

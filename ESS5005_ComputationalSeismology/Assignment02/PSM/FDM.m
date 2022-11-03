@@ -20,7 +20,7 @@ function [flag_fig_num] = FDM(flag_FDM,nx,ny,nt,dx,dt,c,H,f,ixs,iys,title,dt2,fl
         for ix = 2:nx-1
             for iy = 2:ny-1
                 V = c(iy,ix)^2*dt^2/dx^2;
-                if flag_FDM == 2 || ix == 2 || ix == nx-3 || iy ==2 || iy == ny-3
+                if flag_FDM == 2 || ix == 2 || ix == nx-1 || iy ==2 || iy == ny-1
                     p_new(iy,ix) = 2.0*(1.0 + -2.0*V)*p(iy,ix) - p_old(iy,ix)...
                       + 1.0*V*(p(iy,ix+1) + p(iy,ix-1) + p(iy+1,ix) + p(iy-1,ix));
                 else
