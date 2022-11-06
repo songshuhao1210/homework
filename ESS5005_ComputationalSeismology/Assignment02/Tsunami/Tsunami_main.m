@@ -7,28 +7,29 @@ close all; clc; clear;
 %% parameter settings
 
 % changeable parameters
-eps = 0.2;          % time-space relationship control number
-ppw = 100;            % numbers of points per wavelength
+eps = 0.5;          % time-space relationship control number
+ppw = 1000;            % numbers of points per wavelength
 
 flag_source_location = 1;   % 1--Sumendala earthquake in 2004; 2--center
 flag_source_type = 2;       % 1--Richer; 2--Gaussian
-flag_plot_st = 0;   % 1--save source time function
+flag_source_num = 9;        % 1--single; 9--square
+flag_plot_st = 1;           % 1--save source time function
 
 
 % path
-fig_path = 'fig_tsunami/';
+fig_path = 'fig/';
 if exist(fig_path) == 0
     mkdir(fig_path)
 end
 
 
 % fixed parameters
-
+flag_ratio = ppw/1000;      % refer to ppw = 1000
     % spatial and time scheme
 dx = 10;            % x,y step length
 nx = 1000;          % total number of x points
 ny = 800;           % total number of y points
-nt = 3000;          % total number of t steps
+
 
     % source location
 
@@ -44,6 +45,10 @@ else
     ixs = nx/2;
     iys = ny/2;
 end
+
+    % specific point for single plot
+    ixr = 600;
+    iyr = 400;
 
     % velocity model
 flag_fig_num = 1;
@@ -62,9 +67,7 @@ c = sqrt(g.*H).*0.001; % km/s
 dt = eps*dx/max(max(c));
 f = 2*pi/ppw/dx;
 
-flag_ratio = ppw/1000;
-
-
+nt = ceil(nx*dx/0.3/dt/100)*100;          % total number of t steps
 
 %% plot the source time function
 path = fig_path;
@@ -75,9 +78,9 @@ if flag_plot_st == 1
     subplot(2,1,1)
 
     Fs = 0.02/flag_ratio;            % 采样频率
-    T = 1/Fs;             % 采样周期
-    L = 400/flag_ratio;    % 信号长度
-    t = (0:L-1)*T;        % 时间相量
+    T = 1/Fs;                        % 采样周期
+    L = 400/flag_ratio;              % 信号长度
+    t = (0:L-1)*T;                   % 时间相量
     s0 = source_time(f,t,flag_source_type);
 
     plot(t(1:L/4),s0(1:L/4));
@@ -109,7 +112,7 @@ end
 
 %% PSM
 filename = 'PSM';
-title = 'PSM';
+title_0 = 'PSM';
 path = [fig_path,'PSM/'];
 
 if exist(path) ~= 0
@@ -117,13 +120,13 @@ if exist(path) ~= 0
 end
 mkdir(path)
 
-flag_fig_num = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title,dt2,flag_fig_num,filename,path);
+[flag_fig_num,pr_PSM] = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title_0,dt2,flag_fig_num,filename,path,ixr,iyr);
 
 %% FDM_2nd
 flag_FDM = 2;
 
 filename = 'FDM_2nd';
-title = 'FDM 2nd';
+title_0 = 'FDM 2nd';
 path = [fig_path,'FDM_2nd/'];
 
 if exist(path) ~= 0
@@ -131,13 +134,13 @@ if exist(path) ~= 0
 end
 mkdir(path)
 
-flag_fig_num = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title,dt2,flag_fig_num,filename,path);
+[flag_fig_num,pr_FDM_2] = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title_0,dt2,flag_fig_num,filename,path,ixr,iyr);
 
 %% FDM_4nd
 flag_FDM = 4;
 
 filename = 'FDM_4nd';
-title = 'FDM 4nd';
+title_0 = 'FDM 4nd';
 path = [fig_path,'FDM_4nd/'];
 
 if exist(path) ~= 0
@@ -145,8 +148,22 @@ if exist(path) ~= 0
 end
 mkdir(path)
 
-flag_fig_num = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title,dt2,flag_fig_num,filename,path);
+[flag_fig_num,pr_FDM_4] = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title_0,dt2,flag_fig_num,filename,path,ixr,iyr);
 
 
+%% Plot single
 
+figure(flag_fig_num)
 
+tt = 1:dt:nt*dt;
+plot(tt,pr_PSM/max(pr_PSM),'red','DisplayName','PSM')
+hold on
+plot(tt,pr_FDM_2/max(pr_FDM_2),'green--','DisplayName','FDM_2nd')
+plot(tt,pr_FDM_4/max(pr_FDM_4),'blue--','DisplayName','FDM_4nd')
+hold off
+title('comparison of different method at single point');
+xlabel('time/s')
+legend
+
+set(gcf,'unit','centimeters','position',[1,2,4*10,15])
+saveas(gcf,[fig_path,'compare.png'])

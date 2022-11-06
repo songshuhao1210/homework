@@ -1,4 +1,4 @@
-function [flag_fig_num] = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title,dt2,flag_fig_num,filename,path)
+function [flag_fig_num,pr] = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title,dt2,flag_fig_num,filename,path,ixr,iyr)
 
 
     % PSM
@@ -30,6 +30,7 @@ function [flag_fig_num] = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_sourc
     d2p_y = p;
     p_old = p;
     
+    pr = [];
     for i = 1:nt
         % spatial contribution
         for j = 1:ny
@@ -45,7 +46,24 @@ function [flag_fig_num] = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_sourc
         p_new=2*p-p_old+c.^2.*dt^2.*(d2p_x+d2p_y);
     
         % source contribution
-        p_new(ny-iys,ixs)=p_new(ny-iys,ixs) + source_time(f,i*dt,flag_source_type)*dt^2;
+
+        %  source is placed on a grid:
+	    %    1/4  1/2  1/4
+	    %    1/2   1   1/2
+	    %    1/4  1/2  1/4
+
+        ss = source_time(f,i*dt,flag_source_type)*dt^2;
+        p_new(ny-iys,ixs)=p_new(ny-iys,ixs) + ss;
+
+        p_new(ny-iys-1,ixs)=p_new(ny-iys-1,ixs) + ss;
+        p_new(ny-iys+1,ixs)=p_new(ny-iys+1,ixs) + ss;
+        p_new(ny-iys,ixs-1)=p_new(ny-iys,ixs-1) + ss;
+        p_new(ny-iys,ixs+1)=p_new(ny-iys,ixs+1) + ss;
+
+        p_new(ny-iys-1,ixs-1)=p_new(ny-iys-1,ixs-1) + ss;
+        p_new(ny-iys-1,ixs+1)=p_new(ny-iys-1,ixs+1) + ss;
+        p_new(ny-iys+1,ixs-1)=p_new(ny-iys+1,ixs-1) + ss;
+        p_new(ny-iys+1,ixs+1)=p_new(ny-iys+1,ixs+1) + ss;
 
         % boundary condition
         p_new(1,:)=0;
@@ -62,11 +80,16 @@ function [flag_fig_num] = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_sourc
             gif_2dPSM(:,:,flag_gif)=p;
             flag_gif = flag_gif+1;
         end
+        pr = [pr p(iyr,ixr)];
        
     end
     toc
     disp(['end ',title])
+
+    gif_2dPSM = gif_2dPSM / max(max(max(gif_2dPSM)));
+
+
     %% plot
-    flag_fig_num = plot_main(flag_ratio,nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_fig_num,title,path,filename);
+    flag_fig_num = plot_main(1,nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_fig_num,title,path,filename);
     
 end

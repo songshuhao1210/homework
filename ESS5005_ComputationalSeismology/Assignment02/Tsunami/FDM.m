@@ -1,4 +1,4 @@
-function [flag_fig_num] = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title,dt2,flag_fig_num,filename,path)
+function [flag_fig_num,pr] = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title,dt2,flag_fig_num,filename,path,ixr,iyr)
 
 
     % FDM_2D
@@ -14,6 +14,7 @@ function [flag_fig_num] = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,f
     p_old = p;
     p_new = p;
     
+    pr = [];
     for i = 1:nt
 
         % spatial contribution
@@ -49,11 +50,16 @@ function [flag_fig_num] = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,f
             gif_2dPSM(:,:,flag_gif)=p;
             flag_gif = flag_gif+1;
         end
+        pr = [pr p(iyr,ixr)];
        
     end
     toc
     disp(['end ',title])
+
+    gif_2dPSM = gif_2dPSM / max(max(max(gif_2dPSM)));
+
+
     %% plot
-    flag_fig_num = plot_main(flag_ratio,nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_fig_num,title,path,filename);
+    flag_fig_num = plot_main(2,nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_fig_num,title,path,filename);
     
 end

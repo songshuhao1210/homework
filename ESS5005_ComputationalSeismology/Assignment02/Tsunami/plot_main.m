@@ -1,4 +1,4 @@
-function [flag_fig_num] = plot_main(flag_ratio,nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_fig_num,title_x,path,filename)
+function [flag_fig_num] = plot_main(flag_c,nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_fig_num,title_x,path,filename)
     %% plot gif
     figure(flag_fig_num)
     x = 1 : nx;
@@ -12,8 +12,16 @@ function [flag_fig_num] = plot_main(flag_ratio,nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_
         %axis tight;%使坐标轴的最大值最小值与数值一致
         %shading interp;
         
+%         if flag_c == 1
+%             caxis([-0.06 0.06]);
+%         else
+%             caxis([-0.03 0.03]);
+%         end
         
-        caxis([-10*flag_ratio 10*flag_ratio]);
+        mycolorMap = jet;
+        mycolorMap(33,:) = [1 1 1];
+        colormap(mycolorMap);
+        caxis([-0.08 0.08])
 
 
     
@@ -22,11 +30,11 @@ function [flag_fig_num] = plot_main(flag_ratio,nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_
         xlabel('x');ylabel('y');
         title([ [title_x,'   '] ,num2str(pa*dt2*dt,'%4d'),'s'])
         
-        if max(max(H)) ~= min(min(H))
-            hold on
-            contour(X,Y,H)
-            hold off
-        end
+%         if max(max(H)) ~= min(min(H))
+%             hold on
+%             contour(X,Y,H)
+%             hold off
+%         end
         
         % GIF
         f=getframe(gcf);
@@ -51,8 +59,11 @@ function [flag_fig_num] = plot_main(flag_ratio,nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_
     d = im{round(N_plot*4/5)};
     M=[a,b;c,d];
     imshow(M)
+    %set(gcf)
+    %set(gcf,'unit','centimeters','position',[1,2,4*10,15])
     saveas(gcf,[path,filename,'.png'])
-    set(gcf,'unit','centimeters','position',[1,2,4*10,15])
 
     flag_fig_num = flag_fig_num + 1;
+
+
 end
