@@ -1,4 +1,4 @@
-function [flag_fig_num,pr] = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title,dt2,flag_fig_num,filename,path,ixr,iyr)
+function [flag_fig_num,pr,t_end] = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title,dt2,flag_fig_num,filename,path,ixr,iyr)
 
 
     % PSM
@@ -20,7 +20,7 @@ function [flag_fig_num,pr] = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_so
     
     %% PSM iteration
     disp(['begin ',title])
-    tic
+    t_start = cputime;
         % gif setting
     gif_2dPSM=zeros(ny,nx,nt/dt2);
     flag_gif = 1;
@@ -83,7 +83,7 @@ function [flag_fig_num,pr] = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_so
         pr = [pr p(iyr,ixr)];
        
     end
-    toc
+    t_end = cputime - t_start;
     disp(['end ',title])
 
     gif_2dPSM = gif_2dPSM / max(max(max(gif_2dPSM)));
