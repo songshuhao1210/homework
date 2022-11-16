@@ -6,6 +6,7 @@ function [flag_fig_num,pr,t_end] = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,
     %% PSM iteration
     disp(['begin ',title])
     t_start = cputime;
+    tic
         % gif setting
     gif_2dPSM=zeros(ny,nx,nt/dt2);
     flag_gif = 1;
@@ -53,6 +54,7 @@ function [flag_fig_num,pr,t_end] = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,
         pr = [pr p(iyr,ixr)];
        
     end
+    toc
     t_end = cputime - t_start;
     disp(['end ',title])
 

@@ -17,4 +17,4 @@ P_2 = 15.2251;
 [rho_EoS_Spi_2,rho_mine_Spi_2] = cal_rho(3,z_2,P_2);
 
 
-contrast = (rho_EoS_beta_2-rho_EoS_Oli_1)/rho_EoS_Oli_1;
+contrast = (rho_EoS_beta_2-rho_EoS_Oli_1)/rho_EoS_Oli_1

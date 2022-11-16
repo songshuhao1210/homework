@@ -19,9 +19,9 @@ function [flag_fig_num] = plot_main(flag_c,nx,ny,nt,dt,H,gif_2dPSM,dt2,flag_fig_
 %         end
         
         mycolorMap = jet;
-        mycolorMap(33,:) = [1 1 1];
+        %mycolorMap(33,:) = [1 1 1];
         colormap(mycolorMap);
-        caxis([-0.08 0.08])
+        caxis([-0.01 0.01])
 
 
     

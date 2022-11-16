@@ -6,17 +6,17 @@ close all; clc; clear;
 
 %% parameter settings
 % changeable parameters
-eps = 0.44;          % time-space relationship control number
+eps = 0.71;          % time-space relationship control number
 ppw = 20;            % numbers of points per wavelength
 
-flag_source_location = 1;   % 1--Sumendala earthquake in 2004; 2--center
+flag_source_location = 2;   % 1--Sumendala earthquake in 2004; 2--center
 flag_source_type = 2;       % 1--Richer; 2--Gaussian
 flag_source_num = 9;        % 1--single; 9--square
 flag_plot_st = 0;           % 1--save source time function
 
 
 % path
-fig_path = 'fig_stable/PSM/eps = 0.4/';
+fig_path = 'fig_stable/FDM_4D/';
 if exist(fig_path) == 0
     mkdir(fig_path)
 end
@@ -67,7 +67,7 @@ dt = eps*dx/max(max(c));
 f = max(max(c))/ppw/dx;
 
 %nt = ceil(nx*dx/0.5/dt/100)*100;          % total number of t steps
-nt = 5000;
+nt = 3000;
 %% 
 %% plot the source time function
 path = fig_path;
@@ -113,61 +113,14 @@ end
 time_count = zeros(3,1);
 
 %% PSM
-filename = 'PSM';
-title_0 = 'PSM';
-path = [fig_path,'PSM/'];
-
-if exist(path) ~= 0
-    rmdir(path,'s')
-end
-mkdir(path)
-
-[flag_fig_num,pr_PSM,time_count(1)] = PSM(flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title_0,dt2,flag_fig_num,filename,path,ixr,iyr);
-
-%% FDM_2nd
 flag_FDM = 2;
-
-filename = 'FDM_2nd';
-title_0 = 'FDM 2nd';
-path = [fig_path,'FDM_2nd/'];
-
-if exist(path) ~= 0
-    rmdir(path,'s')
-end
-mkdir(path)
-
-[flag_fig_num,pr_FDM_2,time_count(2)] = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title_0,dt2,flag_fig_num,filename,path,ixr,iyr);
-
-%% FDM_4nd
-flag_FDM = 4;
-
-filename = 'FDM_4nd';
-title_0 = 'FDM 4nd';
-path = [fig_path,'FDM_4nd/'];
+filename = ['eps=',num2str(eps)];
+title_0 = filename;
+path = [fig_path,[filename,'/']];
 
 if exist(path) ~= 0
     rmdir(path,'s')
 end
 mkdir(path)
 
-[flag_fig_num,pr_FDM_4,time_count(3)] = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title_0,dt2,flag_fig_num,filename,path,ixr,iyr);
-
-
-%% Plot single
-
-figure(flag_fig_num)
-
-tt = 1:dt:nt*dt/2;
-plot(tt,pr_PSM(1:length(tt))/max(pr_PSM),'red','DisplayName','PSM')
-hold on
-plot(tt,pr_FDM_2(1:length(tt))/max(pr_FDM_2),'green--','DisplayName','FDM_2nd')
-plot(tt,pr_FDM_4(1:length(tt))/max(pr_FDM_4),'blue--','DisplayName','FDM_4nd')
-hold off
-title('comparison of different method at single point');
-xlabel('time/s')
-legend
-
-set(gcf,'unit','centimeters','position',[1,2,4*10,15])
-saveas(gcf,[fig_path,'compare.png'])
-%% save time
-save(strcat(fig_path,'time_count.mat'),"time_count")
+[flag_fig_num,pr_PSM,time_count(1)] = FDM(flag_FDM,flag_ratio,nx,ny,nt,dx,dt,c,H,f,ixs,iys,flag_source_type,title_0,dt2,flag_fig_num,filename,path,ixr,iyr);
