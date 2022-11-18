@@ -1,4 +1,4 @@
-function [xita] = bound(xita,Nx,Ny)
+function [xita,t_1] = bound(xita,Nx,Ny)
     % corner temperature
     t_1 = 75;
     t_2 = 100;
