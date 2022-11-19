@@ -6,8 +6,8 @@ function [M,D] = tri_Mass_Stiff(N_tot,Nx,Ny,dx,flag_plot_grid,path)
         xx = 1:Nx;
         yy = 1:Ny;
         I = meshgrid(xx,yy);
-        title("Triangular Grid")
         plot(xx,I,'k')
+        title("Triangular Grid")
         xlim([1,Nx])
         ylim([1,Ny])
         hold on
