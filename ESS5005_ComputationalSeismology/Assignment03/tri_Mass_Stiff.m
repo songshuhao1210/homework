@@ -4,7 +4,8 @@ function [M,D] = tri_Mass_Stiff(N_tot,Nx,dx)
     %% define sparse matrix
     M = sparse(N_tot,N_tot);
     D = sparse(N_tot,N_tot);
-
+%     M = zeros(N_tot,N_tot);
+%     D = zeros(N_tot,N_tot);
 
     %% renew point by point
     for idx = 1:N_tot-1

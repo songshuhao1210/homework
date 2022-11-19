@@ -42,7 +42,11 @@ function [m,d] = tri_cal_int(indx_points,Nx,dx,flag_1,flag_2)
     d_phi_2(1,1) = diff(phi_2,a);
     d_phi_2(2,1) = diff(phi_2,b);
 
-    y = (1./jacobi'*d_phi_1)'*(1./jacobi'*d_phi_2)*det(jacobi);
+    j_rev = 1./jacobi';
+    j_rev(j_rev==Inf) = 0;
+    
+
+    y = (j_rev*d_phi_1)'*(j_rev*d_phi_2)*det(jacobi);
 
     d = int(int(y,a,0,1-b),b,0,1);
 
