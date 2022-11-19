@@ -1,0 +1,18 @@
+#BSUB -J MPIJob ### set the job Name
+#BSUB -q large ### specify queue
+#BSUB -n 48 ### ask for number of cores (default: 1)
+#BSUB –R “span[ptile=48]” ### ask for 40 cores per node
+#BSUB -W 24:00 ### set walltime limit: hh:mm
+#BSUB -o FEM_%J.out ### Specify the output and error file. %J is the job-id
+#BSUB -e FEM_%J.err ### -o and -e mean append, -oo and -eo mean overwrite
+
+# here follow the commands you want to execute
+# load the necessary modules
+# NOTE: this is just an example, check with the available modules
+
+module load matlab
+matlab -nodesktop -nosplash -nodisplay -r "FEM"  # 使用 MATLAB 运行当前文件夹中的 Test.m 文件
+
+### This uses the LSB_DJOB_NUMPROC to assign all the cores reserved
+### This is a basic syntax.
+### More complex see the documentation mpirun -np $LSB_DJOB_NUMPROC ./MPI_program
