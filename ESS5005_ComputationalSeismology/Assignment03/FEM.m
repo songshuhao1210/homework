@@ -6,19 +6,26 @@
 %% parameter settings
 
 ka = 0.012;    % kappa
-
+Nx = 20;    % number of points per row
+Ny = 20;    % number of points per column
 dx = 1;    % length per node
-eps = 0.5;  % e = kappa * dt / dx^2
+eps = 1;  % e = kappa * dt / dx^2
+
+flag_grid = 3; % 3--tri; 4--square
+flag_plot_grid = 1; % 1--plot; 0--no plot
+
+Nt = 20/eps;
 dt = eps*dx^2 / ka; % time step
-
-Nx = 30;    % number of points per row
-Ny = 30;    % number of points per column
-Nt = 150;
 N_tot = Nx*Ny;
-
 Lx = (Nx-1)*dx;   % length of x
 Ly = (Ny-1)*dx;   % length of y
 
+%% output
+path = 'output_tri/';
+filename =  'heatdiff_tri';
+if exist(path) == 0
+    mkdir(path)
+end
 
 %% initialize temperature field
 xita_0 = 100;
@@ -29,7 +36,7 @@ xita_old = xita_0*xita_old;
 xita_old = bound(xita_old,Nx,Ny);
 
 %% create mass and stiff matrix M and D
-[M,D] = tri_Mass_Stiff(N_tot,Nx,dx);
+[M,D] = tri_Mass_Stiff(N_tot,Nx,Ny,dx,flag_plot_grid,path);
 
 A = M./dt + ka.*D;
 
@@ -57,33 +64,4 @@ for i=1:Nt
 end
 
 %% plot
-    x = 0:dx:Lx;
-    y = 0:dx:Ly;
-
-%plot gif with 2D contour
-    fig=figure;
-    speeda=1;%两张图播放的间隔时间倍速
-    speedb=1;%跳过图片的倍速
-    speed=speeda*speedb;%real multiple speed
-    for i=1:speedb:Nt
-        contour(y',x',xita(:,:,i),'Fill','on','LevelStep',5,'LineStyle','-','ShowText','on','LineColor','k');
-        xlabel('y[m]');
-        ylabel('x[m]');
-        axis ij  
-        title(['θ[℃]    t=',num2str(i*dt),'s '])
-        colorbar
-        drawnow
-        frame=getframe(fig);
-        im=frame2im(frame);
-        [imind,cm]=rgb2ind(im,256);
-        if i==1
-            imwrite(imind,cm,'heatdiff.gif','gif','LoopCount',inf,'DelayTime',1);
-        else 
-            if i==Nt
-                imwrite(imind,cm,'heatdiff.gif','gif','WriteMode','append','DelayTime',1);
-            else
-                imwrite(imind,cm,'heatdiff.gif','gif','WriteMode','append','DelayTime',0.1);
-            end
-        end
-    end
-    close(fig);
+plot_main(xita,dx,Lx,Ly,dt,Nt,path,filename)

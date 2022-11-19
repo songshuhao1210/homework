@@ -1,5 +1,25 @@
-function [M,D] = tri_Mass_Stiff(N_tot,Nx,dx)
+function [M,D] = tri_Mass_Stiff(N_tot,Nx,Ny,dx,flag_plot_grid,path)
     % generate mass and stiff matrix by triangular basis
+    %% plot grid
+    % valid only for 
+    if flag_plot_grid == 1
+        xx = 1:Nx;
+        yy = 1:Ny;
+        I = meshgrid(xx,yy);
+        title("Triangular Grid")
+        plot(xx,I,'k')
+        xlim([1,Nx])
+        ylim([1,Ny])
+        hold on
+        plot(I,yy,'k')
+
+        for i = 1:Nx-1
+            line([1 i+1],[i+1 1],'Color','k');
+            line([i+1 Nx],[Nx i+1],'Color','k');
+        end
+        saveas(gcf,[path,'grid_tri.png'])
+        hold off
+    end
 
     %% define sparse matrix
     M = sparse(N_tot,N_tot);
