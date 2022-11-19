@@ -1,5 +1,6 @@
 function [] = plot_main(xita,dx,Lx,Ly,dt,Nt,path,filename)
     %% plot gif
+    figure(1)
     x = 0:dx:Lx;
     y = 0:dx:Ly;
 
@@ -18,6 +19,7 @@ function [] = plot_main(xita,dx,Lx,Ly,dt,Nt,path,filename)
         imind=frame2im(f);
         im{i} = frame2im(f);
         [imind,cm]=rgb2ind(imind,256);
+        set(gcf,'Units','centimeter','Position',[5 5 14 10]);
 
         if i==1
              imwrite(imind,cm,[path,filename,'.gif'],'gif', 'Loopcount',inf,'DelayTime',0.5);
@@ -27,6 +29,8 @@ function [] = plot_main(xita,dx,Lx,Ly,dt,Nt,path,filename)
     end
 
     %% plot subfig
+    figure(2)
+    set(gcf,'Units','centimeter','Position',[5 5 30 20]);
     N_plot = length(im);
     a = im{round(N_plot/5)};
     b = im{round(N_plot*2/5)};

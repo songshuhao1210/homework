@@ -1,3 +1,4 @@
+
 %% Heat diffussion by FEM
 %
 % Code by SONG Shuhao
@@ -30,12 +31,9 @@ end
 [M,D] = tri_Mass_Stiff(N_tot,Nx,Ny,dx,flag_plot_grid,path);
 
 
-%% create source term R
-%R = R_vec(Nx,Ny,N_tot,dx,ka,xita_old);
-R = sparse(N_tot,1);
-
 %% iteration
-xita = solve_inv(M,D,R,ka,Nt,Nx,Ny,N_tot,eps,dx);
+xita = solve_inv(M,D,ka,Nt,Nx,Ny,N_tot,eps,dx);
 
 %% plot
+dt = eps*dx^2 / ka; % time step
 plot_main(xita,dx,Lx,Ly,dt,Nt,path,filename)
