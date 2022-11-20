@@ -2,9 +2,9 @@ function [xita,t_1] = bound(xita,Nx,Ny)
     % corner temperature
     t_1 = 75;
     t_2 = 100;
-    t_3 = 25;
-    t_4 = 50;
-    
+    t_3 = 50;
+    t_4 = 25;
+   
     xita_mat = reshape(xita,Ny,Nx)';
 
     

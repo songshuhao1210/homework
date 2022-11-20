@@ -1,5 +1,5 @@
 function [m,d] = tri_cal_int(indx_points,Nx,dx,flag_1,flag_2)
-    % return m_ij
+    % calculate the an element m_ij, d_ij
 
     %% get three points coordinates
     cors = zeros(3,2);
@@ -9,27 +9,13 @@ function [m,d] = tri_cal_int(indx_points,Nx,dx,flag_1,flag_2)
 
     %% calculate Jacobi matrix
     jacobi = zeros(2,2);
-    jacobi(1,1) = cors(2,2)-cors(1,2);
-    jacobi(1,2) = cors(3,2)-cors(1,2);
-    jacobi(2,1) = cors(2,1)-cors(1,1);
-    jacobi(2,2) = cors(3,1)-cors(1,1);
+    jacobi(1,1) = cors(2,2)-cors(1,2); % x,a
+    jacobi(1,2) = cors(3,2)-cors(1,2); % x,b 
+    jacobi(2,1) = cors(2,1)-cors(1,1); % y,a
+    jacobi(2,2) = cors(3,1)-cors(1,1); % y,b
     jacobi = jacobi*dx;
     
     %% represent Two basic functions
-%     if flag_1 == 1 && flag_2 == 1       % 11
-%         m = 1/12;
-%     elseif flag_1 == 2 && flag_2 == 2   % 22
-%         m = 1/12;
-%     elseif flag_1 == 3 && flag_2 == 3   % 33
-%         m = 1/12;
-%     elseif flag_1 + flag_2 == 3         % 12
-%         m = 1/24;
-%     elseif flag_1 + flag_2 == 4         % 13
-%         m = 1/24;
-%     else                                % 23
-%         m = 1/24;
-%     end
-%     m = m*det(jacobi);
     syms a b
     phi_1 = tri_shape_func(flag_1,a,b);
     phi_2 = tri_shape_func(flag_2,a,b);
