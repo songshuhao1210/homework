@@ -11,7 +11,7 @@
 # NOTE: this is just an example, check with the available modules
 
 module load matlab
-matlab -nodesktop -nosplash -nodisplay -r "FEM_par"  # 使用 MATLAB 运行当前文件夹中的 Test.m 文件
+matlab -nodesktop -nosplash -nodisplay -r "FEM_GenMD_par_2"  # 使用 MATLAB 运行当前文件夹中的 Test.m 文件
 
 ### This uses the LSB_DJOB_NUMPROC to assign all the cores reserved
 ### This is a basic syntax.

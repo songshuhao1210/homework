@@ -4,11 +4,11 @@
 %
 
 %% parameter settings
-NxS = [5,10];    % number of points per row
+NxS = [5,10,15,20,25,30,35,40,45,50];    % number of points per row
 NyS = NxS;    % number of points per column
 dx = 0.1;    % length per node
 
-flag_grid = 4; % 3--tri; 4--square
+flag_grid = 3; % 3--tri; 4--square
 flag_plot_grid = 0; % 1--plot; 0--no plot
 
 %% output setting
@@ -19,7 +19,7 @@ if exist(path) == 0
 end
 
 %% create mass and stiff matrix M and D
-CoreNum = 4;
+CoreNum = 10;
 if isempty(gcp('nocreate'))
     p = parpool(CoreNum);
 end
