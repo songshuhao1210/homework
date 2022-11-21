@@ -38,7 +38,7 @@ function [M,D] = sqr_int_format(idx,Nx,N_tot,dx,flag_format)
             M = M + m;D = D + d;
         end
 
-    else                    % 3+4
+    elseif flag_format == 3 % 3+4
 
         if  idx+Nx <= N_tot && mod(idx,Nx)~=0
             indx_points = [idx+Nx,idx+Nx+1,idx+1,idx]; % 3
@@ -48,6 +48,18 @@ function [M,D] = sqr_int_format(idx,Nx,N_tot,dx,flag_format)
         if mod(idx-1,Nx) && idx+Nx <= N_tot
             indx_points = [idx+Nx-1,idx+Nx,idx,idx-1]; % 4
             [m,d] = sqr_cal_int(indx_points,Nx,dx,2,3);
+            M = M + m;D = D + d;
+        end
+    elseif flag_format == 4 % 3
+        if  idx+Nx <= N_tot && mod(idx,Nx)~=0
+            indx_points = [idx+Nx,idx+Nx+1,idx+1,idx]; % 3
+            [m,d] = sqr_cal_int(indx_points,Nx,dx,2,4);
+            M = M + m;D = D + d;
+        end
+    else
+        if  idx-Nx-1 >= 0 && mod(idx,Nx)~=0
+            indx_points = [idx,idx+1,idx-Nx+1,idx-Nx]; % 2
+            [m,d] = sqr_cal_int(indx_points,Nx,dx,1,3);
             M = M + m;D = D + d;
         end
 

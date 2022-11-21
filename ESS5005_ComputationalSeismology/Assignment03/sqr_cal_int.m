@@ -27,20 +27,19 @@ function [m,d] = sqr_cal_int(indx_points,Nx,dx,flag_1,flag_2)
     phi_2 = sqr_shape_func(flag_2,a,b);
 
     %% find m and d integral
-    m = int(int(phi_1*phi_2*det(jacobi),a,-0.5,0.5),b,-0.5,0.5);
+    m = int(int(phi_1*phi_2*det(jacobi),a,-1,1),b,-1,1);
 
     d_phi_1(1,1) = diff(phi_1,a);
     d_phi_1(2,1) = diff(phi_1,b);
     d_phi_2(1,1) = diff(phi_2,a);
     d_phi_2(2,1) = diff(phi_2,b);
 
-    j_rev = 1./jacobi';
-    j_rev(j_rev==Inf) = 0;
+    j_rev = inv(jacobi);
     
 
-    y = (j_rev*d_phi_1)'*(j_rev*d_phi_2)*det(jacobi);
+    y = d_phi_1'*j_rev *j_rev'*d_phi_2*det(jacobi);
 
-    d = int(int(y,a,-1,1),b,-0.5,0.5);
+    d = int(int(y,a,-1,1),b,-1,1);
 
 
     %% test

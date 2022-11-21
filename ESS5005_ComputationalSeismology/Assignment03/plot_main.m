@@ -3,8 +3,10 @@ function [] = plot_main(xita,dx,Lx,Ly,dt,Nt,path,filename)
     figure(1)
     x = 0:dx:Lx;
     y = 0:dx:Ly;
+    speed = 1;
 
-    for i=1:Nt
+    for i=1:speed:Nt
+        set(gcf,'Units','centimeter','Position',[5 5 14 10]);
         contour(y',x',xita(:,:,i),'Fill','on','LevelStep',5,'LineStyle','-','ShowText','on','LineColor','k');
         xlabel('y[m]');
         ylabel('x[m]');
@@ -19,7 +21,7 @@ function [] = plot_main(xita,dx,Lx,Ly,dt,Nt,path,filename)
         imind=frame2im(f);
         im{i} = frame2im(f);
         [imind,cm]=rgb2ind(imind,256);
-        set(gcf,'Units','centimeter','Position',[5 5 14 10]);
+        
 
         if i==1
              imwrite(imind,cm,[path,filename,'.gif'],'gif', 'Loopcount',inf,'DelayTime',0.5);

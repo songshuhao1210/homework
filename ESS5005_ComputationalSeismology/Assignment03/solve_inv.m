@@ -1,4 +1,4 @@
-function [xita] = solve_inv(M,D,ka,Nt,Nx,Ny,N_tot,eps,dx)
+function [xita] = solve_inv(M,D,ka,Nx,Ny,N_tot,eps,dx)
     %% initialize temperature field
     xita_0 = 100;
     xita_old = ones(N_tot,1);
@@ -6,8 +6,9 @@ function [xita] = solve_inv(M,D,ka,Nt,Nx,Ny,N_tot,eps,dx)
     %xita_old = linspace(1,N_tot,N_tot);
     xita_old = bound(xita_old,Nx,Ny);
 
-    %% set A,dt
+    %% set A,dt,Nt
     dt = eps*dx^2 / ka; % time step
+    Nt = floor(1./eps*Nx);
     A = M./dt + ka.*D;
     R = R_vec(Nx,Ny,N_tot,dx,ka,xita_old);
     %R = sparse(N_tot,1);
