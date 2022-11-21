@@ -1,4 +1,4 @@
-function [xita] = solve_inv(M,D,ka,Nx,Ny,N_tot,eps,dx,flag_pde_format)
+function [xita] = solve_inv(M,D,ka,Nx,Ny,N_tot,eps,dx)
     %% initialize temperature field
     xita_0 = 100;
     xita_old = ones(N_tot,1);
@@ -9,12 +9,8 @@ function [xita] = solve_inv(M,D,ka,Nx,Ny,N_tot,eps,dx,flag_pde_format)
     %% set A,dt,Nt
     dt = eps*dx^2 / ka; % time step
     Nt = floor(1./eps*Nx);
+    A = M./dt + ka.*D;
     R = R_vec(Nx,Ny,N_tot,dx,ka,xita_old);
-    if flag_pde_format == 1
-        A = M./dt;
-    else
-        A = M./dt + ka.*D;
-    end
     %R = sparse(N_tot,1);
 
     %% gif setting
@@ -23,12 +19,7 @@ function [xita] = solve_inv(M,D,ka,Nx,Ny,N_tot,eps,dx,flag_pde_format)
     flag_gif = 1;
     %% iteration
     for i=1:Nt
-        if flag_pde_format == 1
-            b = (M./dt-ka.*D)*xita_old +  R;
-        else
-            b = M*xita_old./dt +  R;
-        end
-        
+        b = M*xita_old./dt +  R;
         xita_new = A\b;
         xita_new = bound(xita_new,Nx,Ny);
         xita_old = xita_new;

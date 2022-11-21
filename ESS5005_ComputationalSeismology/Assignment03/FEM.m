@@ -5,15 +5,15 @@
 
 %% parameter settings
 ka = 0.012;    % kappa
-Nx = 30;    % number of points per row
-Ny = 30;    % number of points per column
+Nx = 5;    % number of points per row
+Ny = 5;    % number of points per column
 dx = 1;    % length per node
 eps = 0.1;  % e = kappa * dt / dx^2
 
-flag_grid = 3; % 3--tri; 4--square
+flag_grid = 4; % 3--tri; 4--square
 flag_plot_grid = 1; % 1--plot; 0--no plot
 
-Nt = floor(1./eps*Nx);
+Nt = floor(0.5/eps*Nx);
 
 N_tot = Nx*Ny;
 Lx = (Nx-1)*dx;   % length of x
@@ -35,15 +35,11 @@ if exist(path) == 0
 end
 
 %% create mass and stiff matrix M and D
-tic;
 if flag_grid == 3
     [M,D] = tri_Mass_Stiff(N_tot,Nx,Ny,dx,flag_plot_grid,path);
 else
     [M,D] = sqr_Mass_Stiff(N_tot,Nx,Ny,dx,flag_plot_grid,path);
 end
-toc
-t_end = toc - t_start;
-save(strcat(path,'t_end.mat'),"t_end")
 
 
 %% iteration
