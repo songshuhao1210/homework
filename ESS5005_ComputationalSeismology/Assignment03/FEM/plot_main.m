@@ -5,7 +5,7 @@ function [] = plot_main(xita,dx,Lx,Ly,dt,Nt,path,filename)
     y = 0:dx:Ly;
     speed = 1;
 
-    for i=1:speed:Nt
+    for i=5:speed:Nt
         set(gcf,'Units','centimeter','Position',[5 5 14 10]);
         contour(y',x',xita(:,:,i),'Fill','on','LevelStep',5,'LineStyle','-','ShowText','on','LineColor','k');
         xlabel('y[m]');
