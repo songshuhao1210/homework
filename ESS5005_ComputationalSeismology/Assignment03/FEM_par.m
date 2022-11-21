@@ -1,14 +1,14 @@
-%% Heat diffussion by FEM parfor
+%% Heat diffussion by FEM (parfor version)
 %
 % Code by SONG Shuhao
 %
 
 %% parameter settings
-epsS = 0.4:0.1:2;  % e = kappa * dt / dx^2
+epsS = 0.4:0.2:1;  % e = kappa * dt / dx^2
 
 ka = 0.012;    % kappa
-Nx = 50;    % number of points per row
-Ny = 50;    % number of points per column
+Nx = 30;    % number of points per row
+Ny = 30;    % number of points per column
 dx = 1;    % length per node
 
 flag_grid = 3; % 3--tri; 4--square

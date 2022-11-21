@@ -23,8 +23,8 @@ function [M,D] = sqr_Mass_Stiff(N_tot,Nx,Ny,dx,flag_plot_grid,path)
     %% define sparse matrix
     M = sparse(N_tot,N_tot);
     D = sparse(N_tot,N_tot);
-    M = zeros(N_tot,N_tot);
-    D = zeros(N_tot,N_tot);
+%     M = zeros(N_tot,N_tot);
+%     D = zeros(N_tot,N_tot);
 
     %% renew point by point
     for idx = 1:N_tot-1

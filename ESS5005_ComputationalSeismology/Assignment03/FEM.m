@@ -1,4 +1,3 @@
-
 %% Heat diffussion by FEM
 %
 % Code by SONG Shuhao
@@ -14,7 +13,7 @@ eps = 0.1;  % e = kappa * dt / dx^2
 flag_grid = 4; % 3--tri; 4--square
 flag_plot_grid = 1; % 1--plot; 0--no plot
 
-Nt = floor(1/eps*Nx);
+Nt = floor(0.5/eps*Nx);
 
 N_tot = Nx*Ny;
 Lx = (Nx-1)*dx;   % length of x
@@ -22,8 +21,15 @@ Ly = (Ny-1)*dx;   % length of y
 
 dt = eps*dx^2 / ka; % time step
 %% output
-path = 'output_sqr/';
-filename =  'heatdiff_sqr';
+
+if flag_grid == 3
+    path = 'output_tri/';
+    filename =  'heatdiff_tri';
+else
+    path = 'output_sqr/';
+    filename =  'heatdiff_sqr';
+end
+
 if exist(path) == 0
     mkdir(path)
 end
