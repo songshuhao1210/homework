@@ -37,17 +37,17 @@ function [M_D] = sqr_Mass_Stiff(N_tot,Nx,Ny,dx,flag_plot_grid,path)
         M(idx+1,idx) = m;M(idx,idx+1) = m;
         D(idx+1,idx) = d;D(idx,idx+1) = d;
         if idx-Nx-1>=0
-            [m,d] = sqr_int_format(idx,Nx,N_tot,dx,5);       % 3+4
+            [m,d] = sqr_int_format(idx,Nx,N_tot,dx,5);       % 1
             M(idx,idx-Nx+1) = m;M(idx-Nx+1,idx) = m;
             D(idx,idx-Nx+1) = d;D(idx-Nx+1,idx) = d;
         end
-
-        if idx + Nx < N_tot
+        if idx + Nx <= N_tot
             [m,d] = sqr_int_format(idx,Nx,N_tot,dx,3);       % 3+4
             M(idx,idx+Nx) = m;M(idx+Nx,idx) = m;
             D(idx,idx+Nx) = d;D(idx+Nx,idx) = d;
-
-            [m,d] = sqr_int_format(idx,Nx,N_tot,dx,4);       % 3+4
+        end
+        if idx + Nx < N_tot
+            [m,d] = sqr_int_format(idx,Nx,N_tot,dx,4);       % 3
             M(idx,idx+Nx+1) = m;M(idx+Nx+1,idx) = m;
             D(idx,idx+Nx+1) = d;D(idx+Nx+1,idx) = d;
         end

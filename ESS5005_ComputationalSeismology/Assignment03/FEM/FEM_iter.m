@@ -7,9 +7,9 @@ clear all
 %% 
 
 %% parameter settings
-epsS = [1];  % e = kappa * dt / dx^2
-Nx = 50;    % number of points per row
-Ny = 50;    % number of points per column
+epsS = 1;  % e = kappa * dt / dx^2
+Nx = 10;    % number of points per row
+Ny = 10;    % number of points per column
 dx = 1;    % length per node
 
 flag_grid = 4; % 3--tri; 4--square

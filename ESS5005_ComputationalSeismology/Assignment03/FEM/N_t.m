@@ -1,6 +1,6 @@
 function [Nt,dt] = N_t(Nx,eps,ka,dx,flag_len)
     if flag_len == 1
-        Nt = floor(0.18/eps*(Nx/10)^2*Nx);
+        Nt = floor(2/eps*(Nx/10)^2*Nx);
     else
         Nt = floor(0.015/eps*(Nx/10)^2*Nx);
     end

@@ -8,7 +8,7 @@ Nx = 10;    % number of points per row
 Ny = 10;    % number of points per column
 dx = 1;    % length per node
 
-flag_grid = 3; % 3--tri; 4--square
+flag_grid = 4; % 3--tri; 4--square
 flag_plot_grid = 0; % 1--plot; 0--no plot
 
 %% output setting
