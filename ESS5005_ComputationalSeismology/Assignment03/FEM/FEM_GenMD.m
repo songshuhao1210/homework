@@ -4,8 +4,8 @@
 %
 
 %% parameter settings
-Nx = 5;    % number of points per row
-Ny = 5;    % number of points per column
+Nx = 50;    % number of points per row
+Ny = 50;    % number of points per column
 dx = 0.1;    % length per node
 
 flag_grid = 4; % 3--tri; 4--square

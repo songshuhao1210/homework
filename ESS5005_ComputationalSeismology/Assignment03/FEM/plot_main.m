@@ -1,9 +1,9 @@
-function [] = plot_main(xita,dx,Lx,Ly,dt,Nt,path,filename)
+function [] = plot_main(xita,dx,Lx,Ly,eps,ka,Nx,path,filename,flag_len,speed)
     %% plot gif
     figure(1)
     x = 0:dx:Lx;
     y = 0:dx:Ly;
-    speed = 1;
+    [Nt,dt] = N_t(Nx,eps,ka,dx,flag_len);
 
     for i=1:speed:Nt
         set(gcf,'Units','centimeter','Position',[5 5 14 10]);
@@ -11,7 +11,7 @@ function [] = plot_main(xita,dx,Lx,Ly,dt,Nt,path,filename)
         xlabel('y[m]');
         ylabel('x[m]');
         axis ij  
-        title(['Temperature θ[℃]    t=',num2str(ceil(i*dt)),'s '])
+        title(['Temperature θ[℃]    t=',num2str(ceil(i*dt)),'s  dt=',num2str(dt),'s'])
         colorbar
         drawnow
 
@@ -19,7 +19,7 @@ function [] = plot_main(xita,dx,Lx,Ly,dt,Nt,path,filename)
         % GIF
         f=getframe(gcf);
         imind=frame2im(f);
-        im{i} = frame2im(f);
+        im{ceil(i/speed)} = frame2im(f);
         [imind,cm]=rgb2ind(imind,256);
         
 
