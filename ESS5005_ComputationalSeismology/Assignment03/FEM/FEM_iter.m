@@ -6,15 +6,15 @@ close all
 clear all
 
 %% parameter settings
-epsS = 0.01;  % e = kappa * dt / dx^2
-Nx = 10;    % number of points per row
-Ny = 10;    % number of points per column
+epsS = 1;  % e = kappa * dt / dx^2
+Nx = 50;    % number of points per row
+Ny = 50;    % number of points per column
 dx = 1;    % length per node
 
 flag_grid = 3; % 3--tri; 4--square
 flag_pde_format = 2; % 1--explicit; 2--implicit
 flag_len  = 1;% 1--normal;  2--short;
-flag_speed = 10;
+flag_speed = 1;
 
 ka = 0.019;    % kappa  mm^2/s
 

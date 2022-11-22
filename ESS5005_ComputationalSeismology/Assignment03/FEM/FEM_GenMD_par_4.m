@@ -19,7 +19,7 @@ if exist(path) == 0
 end
 
 %% create mass and stiff matrix M and D
-CoreNum = 10;
+CoreNum = 4;
 if isempty(gcp('nocreate'))
     p = parpool(CoreNum);
 end
