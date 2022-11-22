@@ -34,10 +34,10 @@ function [] = plot_main(xita,dx,Lx,Ly,eps,ka,Nx,path,filename,flag_len,speed)
     figure(2)
     set(gcf,'Units','centimeter','Position',[5 5 30 20]);
     N_plot = length(im);
-    a = im{round(N_plot/5)};
-    b = im{round(N_plot*2/5)};
-    c = im{round(N_plot*3/5)};
-    d = im{round(N_plot*4/5)};
+    a = im{round(N_plot*2/10)};
+    b = im{round(N_plot*4/10)};
+    c = im{round(N_plot*7/10)};
+    d = im{round(N_plot*10/10)};
     M=[a,b;c,d];
     imshow(M)
     %set(gcf)

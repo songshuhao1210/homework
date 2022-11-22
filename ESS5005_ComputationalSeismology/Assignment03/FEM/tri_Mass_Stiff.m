@@ -37,14 +37,16 @@ function [M_D] = tri_Mass_Stiff(N_tot,Nx,Ny,dx,flag_plot_grid,path)
         M(idx,idx) = m;D(idx,idx) = d;
 
         % near 3 points
-        [m,d] = tri_int_format(idx,Nx,N_tot,dx,2);           % 3+4
+        [m,d] = tri_int_format(idx,Nx,N_tot,dx,2);           % 2+3
         M(idx+1,idx) = m;M(idx,idx+1) = m;
         D(idx+1,idx) = d;D(idx,idx+1) = d;
         if idx + Nx < N_tot
-            [m,d] = tri_int_format(idx,Nx,N_tot,dx,3);       % 4+5
+            [m,d] = tri_int_format(idx,Nx,N_tot,dx,3);       % 3+4
             M(idx,idx+Nx+1) = m;M(idx+Nx+1,idx) = m;
             D(idx,idx+Nx+1) = d;D(idx+Nx+1,idx) = d;
-            [m,d] = tri_int_format(idx,Nx,N_tot,dx,4);       % 5+6
+        end
+        if idx + Nx <= N_tot
+            [m,d] = tri_int_format(idx,Nx,N_tot,dx,4);       % 4+5
             M(idx,idx+Nx) = m;M(idx+Nx,idx) = m;
             D(idx,idx+Nx) = d;D(idx+Nx,idx) = d;
         end

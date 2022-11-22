@@ -46,39 +46,39 @@ function [M,D] = tri_int_format(idx,Nx,N_tot,dx,flag_format)
             M = M + m;D = D + d;
         end
 
-    elseif flag_format == 2 % 3+4
+    elseif flag_format == 2 % 2+3
 
         if mod(idx,Nx)~=0 && idx-Nx-1 >= 0
-            indx_points = [idx,idx+1,idx-Nx];   % 3
+            indx_points = [idx,idx+1,idx-Nx];   % 2
             [m,d] = tri_cal_int(indx_points,Nx,dx,1,2);
             M = M + m;D = D + d;
         end
         if idx+Nx <= N_tot && mod(idx,Nx)~=0
-            indx_points = [idx+1,idx,idx+Nx+1]; % 4
+            indx_points = [idx+1,idx,idx+Nx+1]; % 3
             [m,d] = tri_cal_int(indx_points,Nx,dx,1,2);
             M = M + m;D = D + d;
         end
     
-    elseif flag_format == 3 % 4+5   
+    elseif flag_format == 3 % 3+4
 
         if idx+Nx <= N_tot && mod(idx,Nx)~=0
-            indx_points = [idx+1,idx,idx+Nx+1]; % 4
+            indx_points = [idx+1,idx,idx+Nx+1]; % 3
             [m,d] = tri_cal_int(indx_points,Nx,dx,2,3);
             M = M + m;D = D + d;
-            indx_points = [idx+Nx,idx+Nx+1,idx];% 5
+            indx_points = [idx+Nx,idx+Nx+1,idx];% 4
             [m,d] = tri_cal_int(indx_points,Nx,dx,2,3);
             M = M + m;D = D + d;
         end
 
-    else                    % 5+6
+    else                    % 4+5
 
         if idx+Nx <= N_tot && mod(idx,Nx)~=0
-            indx_points = [idx+Nx,idx+Nx+1,idx];% 5
+            indx_points = [idx+Nx,idx+Nx+1,idx];% 4
             [m,d] = tri_cal_int(indx_points,Nx,dx,1,3);
             M = M + m;D = D + d;
         end
         if mod(idx-1,Nx) && idx+Nx <= N_tot
-            indx_points = [idx,idx-1,idx+Nx];   % 6
+            indx_points = [idx,idx-1,idx+Nx];   % 5
             [m,d] = tri_cal_int(indx_points,Nx,dx,1,3);
             M = M + m;D = D + d;
         end
