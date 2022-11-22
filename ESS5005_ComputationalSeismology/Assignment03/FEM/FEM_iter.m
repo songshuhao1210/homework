@@ -43,6 +43,7 @@ for i=1:length(epsS)
     load(filename_mat)
     xita = solve_inv(M,D,ka,Nx,Ny,N_tot,eps,dx,flag_pde_format,flag_len);
     plot_main(xita,dx,Lx,Ly,eps,ka,Nx,path,filename,flag_len,flag_speed)
+    
 end
 
 %% plot
