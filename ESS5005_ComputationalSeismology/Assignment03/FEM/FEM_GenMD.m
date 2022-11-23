@@ -4,15 +4,17 @@
 %
 
 %% parameter settings
-Nx = 10;    % number of points per row
-Ny = 10;    % number of points per column
+Nx = 30;    % number of points per row
+Ny = 30;    % number of points per column
 dx = 1;    % length per node
 
 flag_grid = 4; % 3--tri; 4--square
-flag_plot_grid = 0; % 1--plot; 0--no plot
+flag_plot_grid = 1; % 1--plot; 0--no plot
+
+N_tot = Nx*Ny;
 
 %% output setting
-path = 'M_D/';
+path = 'M_D_test/';
 if flag_grid == 3
     filename =  ['tri_Nx_',num2str(Nx),'_dx_',num2str(dx),'.mat'];
 else

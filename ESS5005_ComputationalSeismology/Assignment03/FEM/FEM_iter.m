@@ -7,7 +7,7 @@ clear all
 %% 
 
 %% parameter settings
-epsS = 1;  % e = kappa * dt / dx^2
+epsS = 0.01;  % e = kappa * dt / dx^2
 Nx = 50;    % number of points per row
 Ny = 50;    % number of points per column
 dx = 1;    % length per node

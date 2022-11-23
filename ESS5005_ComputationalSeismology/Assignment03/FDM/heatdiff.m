@@ -5,12 +5,12 @@ clear all
 %This program aims to imitate the process of heat diffusion
 
 %baisc information
-    Lx=50;      %The length of a horizontal line
-    Ly=50;      %The length of a vertical line
+    Lx=49;      %The length of a horizontal line
+    Ly=49;      %The length of a vertical line
     dx=1;    %The interval between two adjacent points that recorded
     k0=0.019;   %The heat diffusion rate
 
-    eps = 0.5;
+    eps = 1;
 
 %Definitions for ICs
     citaABCD=[100;25;50;75];    %The temperature of A,B,C,D in real system
@@ -28,8 +28,8 @@ clear all
     Nx=int32(1/delxd+1);%The number of poits of a horizontal line
     Ny=int32(1/delyd+1);%The number of poits of a vertical line
     Nt = floor(0.1/eps*(Nx/10)^2*Nx);
-    times=Nt/dt;                     %The multiple of time in contrast to dimensionless
-    deltd=td/double(Nt-1);    %The time interval between two record times
+    times=Lx*Ly/k0;                     %The multiple of time in contrast to dimensionless
+    deltd=dt/times;    %The time interval between two record times
 
 
     citaABCDd=(citaABCD-min(citaABCD))/(max(citaABCD)-min(citaABCD));    
@@ -56,11 +56,10 @@ clear all
     U=citad(:,:,1);%iteration from left to right
     V=U;           %iteration from right to left
     for t=2:Nt
-        lambdax=deltd/delxd^2;
-        lambday=deltd/delyd^2;
-        A=(1-lambdax-lambday)/(1+lambdax+lambday);
-        B=lambdax/(1+lambdax+lambday);
-        C=lambday/(1+lambdax+lambday);
+        lambda=2*deltd/delxd^2;
+        A=(1-lambda)/(1+lambda);
+        B=lambda/2/(1+lambda);
+        C=B;
         for i=2:Nx-1
             for j=2:Ny-1
                 U(i,j)=A*U(i,j)+B*(U(i-1,j)+U(i+1,j))+C*(U(i,j-1)+U(i,j+1));
@@ -84,12 +83,12 @@ clear all
     
     speed = floor(ceil(1/eps));
     flag_this = 1;
-    for i=1:speed:Nt/10
+    for i=1:speed:Nt
         set(gcf,'Units','centimeter','Position',[5 5 14 10]);
         contour(y',x',cita(:,:,i),'Fill','on','LevelStep',5,'LineStyle','-','ShowText','on','LineColor','k');
         xlabel('y[m]');
         ylabel('x[m]'); 
-        title(['Temperature ¦È[¡æ]    t=',num2str(ceil(i*dt)),'s  dt=',num2str(dt),'s'])
+        title(['Temperature    t=',num2str(ceil(i*dt)),'s  dt=',num2str(dt),'s'])
         colorbar
         drawnow
 
