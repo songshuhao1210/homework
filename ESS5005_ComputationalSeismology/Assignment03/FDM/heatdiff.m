@@ -8,9 +8,9 @@ clear all
     Lx=49;      %The length of a horizontal line
     Ly=49;      %The length of a vertical line
     dx=1;    %The interval between two adjacent points that recorded
-    k0=0.019;   %The heat diffusion rate
+    k0=1.9e-5;   %The heat diffusion rate
 
-    eps = 1;
+    eps = 5;
 
 %Definitions for ICs
     citaABCD=[100;25;50;75];    %The temperature of A,B,C,D in real system
@@ -101,9 +101,9 @@ clear all
         flag_this = flag_this + 1;
 
         if i==1
-             imwrite(imind,cm,"FEM.gif",'gif', 'Loopcount',inf,'DelayTime',0.5);
+             imwrite(imind,cm,"FDM.gif",'gif', 'Loopcount',inf,'DelayTime',0.5);
         else
-             imwrite(imind,cm,'FEM.gif','gif','WriteMode','append','DelayTime',0.1);
+             imwrite(imind,cm,'FDM.gif','gif','WriteMode','append','DelayTime',0.1);
         end
     end
 
@@ -119,6 +119,6 @@ clear all
     imshow(M)
     %set(gcf)
     %set(gcf,'unit','centimeters','position',[1,2,4*10,15])
-    saveas(gcf,'FEM.png')
+    saveas(gcf,'FDM.png')
 
     

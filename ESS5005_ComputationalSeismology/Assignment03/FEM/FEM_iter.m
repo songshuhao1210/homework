@@ -7,17 +7,17 @@ clear all
 %% 
 
 %% parameter settings
-epsS = 0.01;  % e = kappa * dt / dx^2
-Nx = 50;    % number of points per row
+epsS = [0.01];  % e = kappa * dt / dx^2
+Nx = 50;   % number of points per row
 Ny = 50;    % number of points per column
 dx = 1;    % length per node
 
 flag_grid = 4; % 3--tri; 4--square
-flag_pde_format = 2; % 1--explicit; 2--implicit
+flag_pde_format = 1; % 1--explicit; 2--implicit
 flag_len  = 1;% 1--normal;  2--short;
 
 
-ka = 0.019;    % kappa  mm^2/s
+ka = 1.9e-5;    % kappa  mm^2/s
 
 N_tot = Nx*Ny;
 Lx = (Nx-1)*dx;   % length of x
@@ -25,7 +25,7 @@ Ly = (Ny-1)*dx;   % length of y
 path_mat = 'M_D/';
 
 %% output
-path = 'output_test/';
+path = 'output_offitial/';
 
 if exist(path) == 0
     mkdir(path)
