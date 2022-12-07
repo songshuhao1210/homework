@@ -5,7 +5,7 @@ w_core = [86, 5.5, 6.8, 1.7];               % Fe, Ni, Si, O
 w_mantle = [45.5, 38.3, 8.2, 4.5, 3.5];     % SiO2, MgO, FeO, Al2O3, CaO
 
 M_core = [56, 59, 28, 16];          % Fe, Ni, Si, O
-M_mantle = [60, 40, 72, 100, 56];% SiO2, MgO, FeO, Al2O3, CaO
+M_mantle = [60, 40, 72, 100, 56];   % SiO2, MgO, FeO, Al2O3, CaO
 
 %% total mole number
 n_core = 0;
