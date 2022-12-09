@@ -1,0 +1,105 @@
+
+--------------------------------------------------------------------------------
+
+
+Problem title: EH70                                                                                                                                                              
+
+Thermodynamic data base from: Stixrude & Lithgow-Bertelloni, GJI '11                                          
+
+Independently constrained potentials:
+
+   P(bar)   T(K)    
+
+Components with unconstrained potentials:
+
+   SIO2    AL2O3   FEO     MGO     CAO     NA2O 
+
+Phases and (projected) compositions:
+
+            SIO2    AL2O3   FEO     MGO     CAO     NA2O 
+   ab        0.750   0.125   0.000   0.000   0.000   0.125
+   alm       0.429   0.143   0.429   0.000   0.000   0.000
+   aperov    0.000   1.000   0.000   0.000   0.000   0.000
+   an        0.500   0.250   0.000   0.000   0.250   0.000
+   seif      1.000   0.000   0.000   0.000   0.000   0.000
+   appv      0.000   1.000   0.000   0.000   0.000   0.000
+   ca-pv     0.500   0.000   0.000   0.000   0.500   0.000
+   cts       0.333   0.333   0.000   0.000   0.333   0.000
+   cen       0.500   0.000   0.000   0.500   0.000   0.000
+   cfs       0.500   0.000   0.500   0.000   0.000   0.000
+   cor       0.000   1.000   0.000   0.000   0.000   0.000
+   coe       1.000   0.000   0.000   0.000   0.000   0.000
+   di        0.500   0.000   0.000   0.250   0.250   0.000
+   en        0.500   0.000   0.000   0.500   0.000   0.000
+   fc2/c     0.500   0.000   0.500   0.000   0.000   0.000
+   fa        0.333   0.000   0.667   0.000   0.000   0.000
+   ffer      0.000   0.500   0.500   0.000   0.000   0.000
+   faki      0.500   0.000   0.500   0.000   0.000   0.000
+   fperov    0.500   0.000   0.500   0.000   0.000   0.000
+   fring     0.333   0.000   0.667   0.000   0.000   0.000
+   fwad      0.333   0.000   0.667   0.000   0.000   0.000
+   fo        0.333   0.000   0.000   0.667   0.000   0.000
+   fppv      0.500   0.000   0.500   0.000   0.000   0.000
+   fs        0.500   0.000   0.500   0.000   0.000   0.000
+   gr        0.429   0.143   0.000   0.000   0.429   0.000
+   herc      0.000   0.500   0.500   0.000   0.000   0.000
+   hed       0.500   0.000   0.250   0.000   0.250   0.000
+   jd        0.667   0.167   0.000   0.000   0.000   0.167
+   jmaj      0.667   0.167   0.000   0.000   0.000   0.167
+   ky        0.500   0.500   0.000   0.000   0.000   0.000
+   c2/c      0.500   0.000   0.000   0.500   0.000   0.000
+   mfer      0.000   0.500   0.000   0.500   0.000   0.000
+   aki       0.500   0.000   0.000   0.500   0.000   0.000
+   maj       0.500   0.000   0.000   0.500   0.000   0.000
+   perov     0.500   0.000   0.000   0.500   0.000   0.000
+   ring      0.333   0.000   0.000   0.667   0.000   0.000
+   ts        0.333   0.333   0.000   0.333   0.000   0.000
+   wad       0.333   0.000   0.000   0.667   0.000   0.000
+   ppv       0.500   0.000   0.000   0.500   0.000   0.000
+   nfer      0.500   0.250   0.000   0.000   0.000   0.250
+   neph      0.500   0.250   0.000   0.000   0.000   0.250
+   odi       0.500   0.000   0.000   0.250   0.250   0.000
+   per       0.000   0.000   0.000   1.000   0.000   0.000
+   py        0.429   0.143   0.000   0.429   0.000   0.000
+   q         1.000   0.000   0.000   0.000   0.000   0.000
+   sp        0.000   0.500   0.000   0.500   0.000   0.000
+   st        1.000   0.000   0.000   0.000   0.000   0.000
+   wus       0.000   0.000   1.000   0.000   0.000   0.000
+
+Excluded phases:
+
+ Wus         Pv          O           Wad         Ring        Opx       
+ Cpx         Aki         Gt_maj    
+
+--------------------------------------------------------------------------------
+
+
+ Stable assemblages identified by assemblage index:
+
+   1 - Cpx Cpx Opx Gt_maj q 
+   2 - Cpx Opx Gt_maj q 
+   3 - Cpx Opx ab q 
+   4 - Opx ab q 
+   5 - Cpx Cpx Opx Gt_maj coe 
+   6 - Cpx Opx q 
+   7 - Cpx Cpx Cpx Opx Gt_maj coe 
+   8 - Cpx Opx Gt_maj coe 
+   9 - Cpx Opx coe 
+  10 - Cpx Cpx Opx Gt_maj coe c2/c 
+  11 - Ring Cpx Cpx Gt_maj c2/c st 
+  12 - Cpx Cpx Opx Gt_maj c2/c st 
+  13 - Cpx Cpx Opx Gt_maj st 
+  14 - Cpx Opx Gt_maj st 
+  15 - Ring Cpx Cpx Opx Gt_maj st 
+  16 - Ring Cpx Gt_maj c2/c st 
+  17 - Ring Cpx Opx Gt_maj st 
+  18 - Ring Cpx Gt_maj st 
+  19 - Ring Cpx Cpx Gt_maj st 
+  20 - Cpx Gt_maj c2/c st 
+  21 - Cpx Gt_maj st 
+  22 - Ring Cpx Gt_maj Gt_maj st 
+  23 - Ring Gt_maj st 
+  24 - Gt_maj st 
+  25 - Ring Cpx Aki Gt_maj st 
+  26 - Ring Cpx Gt_maj ca-pv st 
+  27 - Cpx Opx Gt_maj c2/c st 

@@ -1,0 +1,123 @@
+
+--------------------------------------------------------------------------------
+
+
+Problem title: Morgan-Anders-Kamaya                                                                                                                                              
+
+Thermodynamic data base from: Stixrude & Lithgow-Bertelloni, GJI '11                                          
+
+Independently constrained potentials:
+
+   P(bar)   T(K)    
+
+Components with unconstrained potentials:
+
+   SIO2    AL2O3   FEO     MGO     CAO     NA2O 
+
+Phases and (projected) compositions:
+
+            SIO2    AL2O3   FEO     MGO     CAO     NA2O 
+   ab        0.750   0.125   0.000   0.000   0.000   0.125
+   alm       0.429   0.143   0.429   0.000   0.000   0.000
+   aperov    0.000   1.000   0.000   0.000   0.000   0.000
+   an        0.500   0.250   0.000   0.000   0.250   0.000
+   seif      1.000   0.000   0.000   0.000   0.000   0.000
+   appv      0.000   1.000   0.000   0.000   0.000   0.000
+   ca-pv     0.500   0.000   0.000   0.000   0.500   0.000
+   cts       0.333   0.333   0.000   0.000   0.333   0.000
+   cen       0.500   0.000   0.000   0.500   0.000   0.000
+   cfs       0.500   0.000   0.500   0.000   0.000   0.000
+   cor       0.000   1.000   0.000   0.000   0.000   0.000
+   coe       1.000   0.000   0.000   0.000   0.000   0.000
+   di        0.500   0.000   0.000   0.250   0.250   0.000
+   en        0.500   0.000   0.000   0.500   0.000   0.000
+   fc2/c     0.500   0.000   0.500   0.000   0.000   0.000
+   fa        0.333   0.000   0.667   0.000   0.000   0.000
+   ffer      0.000   0.500   0.500   0.000   0.000   0.000
+   faki      0.500   0.000   0.500   0.000   0.000   0.000
+   fperov    0.500   0.000   0.500   0.000   0.000   0.000
+   fring     0.333   0.000   0.667   0.000   0.000   0.000
+   fwad      0.333   0.000   0.667   0.000   0.000   0.000
+   fo        0.333   0.000   0.000   0.667   0.000   0.000
+   fppv      0.500   0.000   0.500   0.000   0.000   0.000
+   fs        0.500   0.000   0.500   0.000   0.000   0.000
+   gr        0.429   0.143   0.000   0.000   0.429   0.000
+   herc      0.000   0.500   0.500   0.000   0.000   0.000
+   hed       0.500   0.000   0.250   0.000   0.250   0.000
+   jd        0.667   0.167   0.000   0.000   0.000   0.167
+   jmaj      0.667   0.167   0.000   0.000   0.000   0.167
+   ky        0.500   0.500   0.000   0.000   0.000   0.000
+   c2/c      0.500   0.000   0.000   0.500   0.000   0.000
+   mfer      0.000   0.500   0.000   0.500   0.000   0.000
+   aki       0.500   0.000   0.000   0.500   0.000   0.000
+   maj       0.500   0.000   0.000   0.500   0.000   0.000
+   perov     0.500   0.000   0.000   0.500   0.000   0.000
+   ring      0.333   0.000   0.000   0.667   0.000   0.000
+   ts        0.333   0.333   0.000   0.333   0.000   0.000
+   wad       0.333   0.000   0.000   0.667   0.000   0.000
+   ppv       0.500   0.000   0.000   0.500   0.000   0.000
+   nfer      0.500   0.250   0.000   0.000   0.000   0.250
+   neph      0.500   0.250   0.000   0.000   0.000   0.250
+   odi       0.500   0.000   0.000   0.250   0.250   0.000
+   per       0.000   0.000   0.000   1.000   0.000   0.000
+   py        0.429   0.143   0.000   0.429   0.000   0.000
+   q         1.000   0.000   0.000   0.000   0.000   0.000
+   sp        0.000   0.500   0.000   0.500   0.000   0.000
+   st        1.000   0.000   0.000   0.000   0.000   0.000
+   wus       0.000   0.000   1.000   0.000   0.000   0.000
+
+Excluded phases:
+
+ Wus         Pv          O           Wad         Ring        Opx       
+ Cpx         Aki         Gt_maj    
+
+--------------------------------------------------------------------------------
+
+
+ Stable assemblages identified by assemblage index:
+
+   1 - O Cpx Cpx Opx Gt_maj 
+   2 - O Cpx Opx Gt_maj 
+   3 - O Cpx Opx Gt_maj sp 
+   4 - O Cpx Opx sp 
+   5 - O Cpx Cpx Opx Opx Gt_maj 
+   6 - O Cpx Opx Opx Gt_maj 
+   7 - O Cpx Cpx Gt_maj c2/c 
+   8 - O Cpx Gt_maj c2/c 
+   9 - O Ring Cpx Cpx Gt_maj c2/c 
+  10 - O Ring Cpx Gt_maj c2/c 
+  11 - O Cpx Opx Gt_maj c2/c 
+  12 - O Ring Cpx Opx Gt_maj 
+  13 - Ring Cpx Cpx Gt_maj c2/c 
+  14 - Ring Cpx Gt_maj c2/c 
+  15 - O Cpx Gt_maj 
+  16 - O Ring Cpx Cpx Opx Gt_maj 
+  17 - O Ring Cpx Gt_maj 
+  18 - Ring Cpx Gt_maj c2/c st 
+  19 - O Wus Cpx Gt_maj 
+  20 - Ring Cpx Gt_maj st 
+  21 - Ring Cpx Cpx Gt_maj st 
+  22 - Ring Cpx Gt_maj 
+  23 - Wad Ring Cpx Gt_maj 
+  24 - Wad Cpx Gt_maj 
+  25 - O Wad Cpx Gt_maj 
+  26 - Ring Gt_maj st 
+  27 - O Wad Gt_maj 
+  28 - O Wus Gt_maj 
+  29 - Wad Ring Gt_maj 
+  30 - Wad Gt_maj 
+  31 - Wad Wus Gt_maj 
+  32 - Ring Gt_maj 
+  33 - Wus Gt_maj 
+  34 - Wad Ring Wus Gt_maj 
+  35 - Ring Gt_maj Gt_maj st 
+  36 - Ring Wus Gt_maj 
+  37 - Ring Cpx Gt_maj Gt_maj st 
+  38 - Ring Gt_maj Gt_maj 
+  39 - Ring Aki Gt_maj st 
+  40 - Ring Cpx Cpx Gt_maj c2/c st 
+  41 - O Wad Wus Cpx Gt_maj 
+  42 - O Wad Wus Gt_maj 
+  43 - O Cpx Cpx Opx Gt_maj c2/c 
+  44 - Ring Cpx Gt_maj Gt_maj c2/c st 
+  45 - O Ring Cpx Cpx Gt_maj 
