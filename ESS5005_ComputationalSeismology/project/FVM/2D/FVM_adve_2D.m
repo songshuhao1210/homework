@@ -1,5 +1,5 @@
 %% 2D scalar advection
-
+close all
 %% parameter settings
 
 % physical

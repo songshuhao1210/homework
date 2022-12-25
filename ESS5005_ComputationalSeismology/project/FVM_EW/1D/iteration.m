@@ -1,7 +1,8 @@
-function [im] = iteration(xx,Nt,dx,dt,c,rho,flag_form,flag_v,xc)
+function [im] = iteration(xx,Nt,dx,dt,c,rho,flag_form,flag_v,xc,speed)
     nx = length(xx);
     Q = init_Q(xx);
     im{1} = plot_main(xx,Q,flag_v,xc);
+    flag_plot = 2;
     if flag_form == 1
         % Upwind
         for ti = 2:Nt
@@ -14,7 +15,10 @@ function [im] = iteration(xx,Nt,dx,dt,c,rho,flag_form,flag_v,xc)
             % absorbing
             Q = boundary_Q(Q,xx);
             % plot
-            im{ti} = plot_main(xx,Q,flag_v,xc);
+            if mod(ti,speed) == 0
+                im{flag_plot} = plot_main(xx,Q,flag_v,xc);
+                flag_plot = flag_plot + 1;
+            end
         end
     else
         % Lax
@@ -29,7 +33,10 @@ function [im] = iteration(xx,Nt,dx,dt,c,rho,flag_form,flag_v,xc)
             % absorbing
             Q = boundary_Q(Q,xx);
             % plot
-            im{ti} = plot_main(xx,Q,flag_v,xc);
+            if mod(ti,speed) == 0
+                im{flag_plot} = plot_main(xx,Q,flag_v,xc);
+                flag_plot = flag_plot + 1;
+            end
         end
     end
 end
