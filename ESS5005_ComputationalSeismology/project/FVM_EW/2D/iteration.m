@@ -2,7 +2,7 @@ function [im,a] = iteration(xx,yy,Nt,dx,dt,c,rho,f,flag_form,flag_v,yc,speed)
     
     a = zeros(1,Nt);
 
-    CoreNum = 2;        % number of cores to be called
+    CoreNum = 6;        % number of cores to be called
     if isempty(gcp('nocreate'))
         p = parpool(CoreNum);
     end
@@ -24,8 +24,8 @@ function [im,a] = iteration(xx,yy,Nt,dx,dt,c,rho,f,flag_form,flag_v,yc,speed)
         % Upwind
         for ti = 2:Nt
             Q_old = Q;
-            for i = 2:ny-1
-                for j = 2:nx-1
+            for j = 2:nx-1
+                for i = 2:ny-1
                     mu = rho*c(i,j)^2;
                     A = [0,0,-mu; 0,0,0 ; -1/rho,0,0];
                     B = [0,0,0;0,0,-mu;0,-1/rho,0];
@@ -56,8 +56,8 @@ function [im,a] = iteration(xx,yy,Nt,dx,dt,c,rho,f,flag_form,flag_v,yc,speed)
         % Lax
         for ti = 2:Nt
             Q_old = Q;
-            for i = 2:ny-1
-                parfor j = 2:nx-1
+            for j = 2:nx-1
+                parfor i = 2:ny-1
                     mu = rho*c(i,j)^2;
                     A = [0,0,-mu; 0,0,0 ; -1/rho,0,0];
                     B = [0,0,0;0,0,-mu;-0,-1/rho,0];
