@@ -1,10 +1,10 @@
-function [im] = plot_main(xx,yy,Q,flag_plot)
+function [im] = plot_main(xx,yy,Q,t)
     imagesc(xx,yy,Q);
     colorbar;
     set(gca,'CLim',[0,1])
     set(gca,'xaxislocation','top')
     axis ij
-    %title(['2D Acoustic pressure field,  t = ' num2str(tt(nt)),'s' ])
+    title(['t = ' num2str(t),' s' ])
     xlabel('x /m')
     ylabel('y /m')
     f=getframe(gcf);

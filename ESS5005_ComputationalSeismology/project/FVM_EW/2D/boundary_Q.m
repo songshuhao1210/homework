@@ -1,6 +1,8 @@
 function [Q] = boundary_Q(Q,xx,yy)
     nx = length(xx);
     ny = length(yy);
-    Q(1,:,:) = Q(2,:,:);Q(ny,:,:) = Q(ny-1,:,:);
-    Q(:,1,:) = Q(:,2,:);Q(:,nx,:) = Q(:,nx-1,:);
+    for k = 1:3
+        Q(1,:,k) = Q(2,:,k);Q(ny,:,k) = Q(ny-1,:,k);
+        Q(:,1,k) = Q(:,2,k);Q(:,nx,k) = Q(:,nx-1,k);
+    end
 end

@@ -1,7 +1,7 @@
 function [im] = iteration(xx,Nt,dx,dt,c,rho,flag_form,flag_v,xc,speed)
     nx = length(xx);
     Q = init_Q(xx);
-    im{1} = plot_main(xx,Q,flag_v,xc);
+    im{1} = plot_main(xx,Q,flag_v,xc,0);
     flag_plot = 2;
     if flag_form == 1
         % Upwind
@@ -16,7 +16,7 @@ function [im] = iteration(xx,Nt,dx,dt,c,rho,flag_form,flag_v,xc,speed)
             Q = boundary_Q(Q,xx);
             % plot
             if mod(ti,speed) == 0
-                im{flag_plot} = plot_main(xx,Q,flag_v,xc);
+                im{flag_plot} = plot_main(xx,Q,flag_v,xc,(ti-1)*dt);
                 flag_plot = flag_plot + 1;
             end
         end
@@ -34,7 +34,7 @@ function [im] = iteration(xx,Nt,dx,dt,c,rho,flag_form,flag_v,xc,speed)
             Q = boundary_Q(Q,xx);
             % plot
             if mod(ti,speed) == 0
-                im{flag_plot} = plot_main(xx,Q,flag_v,xc);
+                im{flag_plot} = plot_main(xx,Q,flag_v,xc,(ti-1)*dt);
                 flag_plot = flag_plot + 1;
             end
         end
