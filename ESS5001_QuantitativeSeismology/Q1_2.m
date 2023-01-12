@@ -1,7 +1,7 @@
 %% parameters
 xita = pi/6;
 phi = 0;
-r = 20;
+r = 100;
 
 tt = 0:0.05:50;
 %% Elastic constant
@@ -11,7 +11,7 @@ rho = 2.7;
 
 
 %% Parallel computation setting
-CoreNum = 8;        % number of cores to be called
+CoreNum = 30;        % number of cores to be called
 if isempty(gcp('nocreate'))
     p = parpool(CoreNum);
 end
@@ -34,7 +34,16 @@ end
 
 delete(p)
 %%
-plot(tt,uxiS)
+plot(tt,uxiS,'LineWidth',2)
 hold on
-plot(tt,urS)
+plot(tt,urS,'LineWidth',2)
 hold off
+legend('Uθ','Ur')
+set(gcf,'Units','centimeter','Position',[20 5 20 8]);
+set(gca,'XLim',[tt(1) tt(end)]);
+set(gca,'ytick',[])
+ylabel('Amplitude')
+xlabel('time/s')
+title([ 'Theory seismogram; r =',num2str(r),' km'])
+saveas(gcf,['seismogram_r_',num2str(r),'.png'])
+
