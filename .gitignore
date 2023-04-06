@@ -4,3 +4,5 @@
 *.mat
 *.gif
 *.out
+*.dat
+*.DS_Store
