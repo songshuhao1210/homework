@@ -13,6 +13,5 @@ function [L,U] = direct_lu(A)
         end
     end
     U = A;
-    
 
 end

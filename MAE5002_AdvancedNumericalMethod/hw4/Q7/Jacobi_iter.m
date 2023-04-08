@@ -9,7 +9,7 @@ function [y_new,flag_iter,err] = Jacobi_iter(A,b,y_new,err_flag)
         end
         y_new(N) =( b(N) - A(N,1:N-1)*y_old(1:N-1))/A(N,N);
 
-        err = norm(y_new-y_old,2);
+        err = norm(y_new-y_old,inf);
         if err < err_flag
             break;
         end
